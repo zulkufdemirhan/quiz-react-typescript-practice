@@ -3,8 +3,6 @@ import QuestionCard from './components/QuestionCard'
 import { fetchQuizQuestions } from './API';
 import { QuestionsState, Difficulty } from './API';
 
-
-
 export type AnswerObject = {
     question: string;
     answer: string;
@@ -26,7 +24,7 @@ export default function App() {
     console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
     // !--------------------------------------------------------
     // it will be async function because we gonna make the api call .
-    
+
     const startTrivia = async ()=>{
         setLoading(true);
         setGameOver(false);
@@ -39,9 +37,7 @@ export default function App() {
         setUserAnswers([]);
         setNumber(0);
         setLoading(false);
-
     }
-    
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (!gameOver) {
             // User's answer
@@ -70,20 +66,15 @@ export default function App() {
         setNumber(nextQ);
     }
     }
-
 return (
     <div>
-
         <h1>React Quiz</h1>
-
             {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <button className='start' onClick={startTrivia}>
                 Start
             </button>
             ) : null}
-
     {/* -------------------------------------------------------- */}
-
             {!gameOver ? <p className='score'>Score: {score}</p> : null}
             {loading ? <p>Loading Questions...</p> : null}
             {!loading && !gameOver && (
@@ -96,15 +87,12 @@ return (
                 callback={checkAnswer}
             />
             )}
-
      {/* !-------------------------------------------------------- */}
-
             {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
             <button className='next' onClick={nextQuestion}>
                 Next Question
             </button>
-            ) : null}
-            
+            ) : null}           
     </div>
 )
 }

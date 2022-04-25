@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import { AnswerObject } from '../App';
 
-
 type Props = {
         question:string;
         answers:string[];
@@ -10,16 +9,12 @@ type Props = {
         questionNr:number;
         totalQuestion:number;
 }
-
-
 const QuestionCard : FunctionComponent <Props> = ({question,answers,callback,questionNr,totalQuestion,userAnswer})=>(
-    
     <div>
         <p className="number">
             Question: {questionNr} / {totalQuestion}
         </p>
         <p dangerouslySetInnerHTML={{__html:question}} />
-
         <div>
             {answers.map(answer=>(
                 <div key={answer}>
@@ -31,7 +26,4 @@ const QuestionCard : FunctionComponent <Props> = ({question,answers,callback,que
         </div>
     </div>
 ) 
-
-
-
 export default QuestionCard;
