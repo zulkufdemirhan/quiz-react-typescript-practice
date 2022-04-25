@@ -14,17 +14,14 @@ const TOTAL_QUESTIONS=10;
 export default function App() {
     // !--------------------------------------------------------
     // Burada belirlediğimiz stateleri props olarak questioncard ' a gidecek.
-
     const [loading,setLoading] = useState(false);
     const [questions,setQuestions] = useState<QuestionsState[]>([]);
     const [number,setNumber] = useState(0);
     const [userAnswers,setUserAnswers] = useState<AnswerObject[]>([]);
     const [score,setScore] = useState(0);
     const [gameOver,setGameOver] = useState(true);
-    console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
     // !--------------------------------------------------------
     // it will be async function because we gonna make the api call .
-
     const startTrivia = async ()=>{
         setLoading(true);
         setGameOver(false);
@@ -64,8 +61,7 @@ export default function App() {
         setGameOver(true);
     } else {
         setNumber(nextQ);
-    }
-    }
+    }}
 return (
     <div>
         <h1>React Quiz</h1>
