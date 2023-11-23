@@ -12,16 +12,13 @@ export type AnswerObject = {
 const TOTAL_QUESTIONS=10;
 
 export default function App() {
-    // !--------------------------------------------------------
-    // Burada belirlediğimiz stateleri props olarak questioncard ' a gidecek.
     const [loading,setLoading] = useState(false);
     const [questions,setQuestions] = useState<QuestionsState[]>([]);
     const [number,setNumber] = useState(0);
     const [userAnswers,setUserAnswers] = useState<AnswerObject[]>([]);
     const [score,setScore] = useState(0);
     const [gameOver,setGameOver] = useState(true);
-    // !--------------------------------------------------------
-    // it will be async function because we gonna make the api call .
+
     const startTrivia = async ()=>{
         setLoading(true);
         setGameOver(false);
@@ -37,13 +34,9 @@ export default function App() {
     }
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (!gameOver) {
-            // User's answer
             const answer = e.currentTarget.value;
-            // Check answer against correct answer
             const correct = questions[number].correct_answer === answer;
-            // Add score if answer is correct
             if (correct) setScore((prev) => prev + 1);
-            // Save the answer in the array for user answers
             const answerObject = {
                 question: questions[number].question,
                 answer,
@@ -54,7 +47,6 @@ export default function App() {
         }
     }
     const nextQuestion = () => {
-             // Move on to the next question if not the last question
     const nextQ = number + 1;
 
     if (nextQ === TOTAL_QUESTIONS) {
@@ -70,7 +62,6 @@ return (
                 Start
             </button>
             ) : null}
-    {/* -------------------------------------------------------- */}
             {!gameOver ? <p className='score'>Score: {score}</p> : null}
             {loading ? <p>Loading Questions...</p> : null}
             {!loading && !gameOver && (
@@ -83,7 +74,6 @@ return (
                 callback={checkAnswer}
             />
             )}
-     {/* !-------------------------------------------------------- */}
             {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
             <button className='next' onClick={nextQuestion}>
                 Next Question
